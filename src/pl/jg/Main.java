@@ -3,12 +3,13 @@ package pl.jg;
 import java.util.Scanner;
 
 import static java.lang.System.in;
+import static pl.jg.NumberSystemConverter.numberSystemConverter;
 
 public class Main {
 
-    static Scanner sc = new Scanner(in);
 
     public static void main(String[] args) {
+        Scanner sc = new Scanner(in);
 
         System.out.println("Podaj nazwę użytkownika - moja propozycja to \"user\"");
         String userName = sc.nextLine();
@@ -38,25 +39,25 @@ public class Main {
             String chosenAction = sc.nextLine().toLowerCase();
             switch (chosenAction) {
                 case "1":
-                    Function1_SumOfElements.sumOfElements();
+                    ArithmeticOperations.sumOfElements(sc);
                     break;
                 case "2":
-                    Function2_Multiply.multiply();
+                    ArithmeticOperations.multiply(sc);
                     break;
                 case "3":
-                    Function3_Division.divide();
+                    ArithmeticOperations.divide(sc);
                     break;
                 case "4":
-                    Function4_Root.root();
+                    ArithmeticOperations.root(sc);
                     break;
                 case "5":
-                    Function5_NumberSystemConverter.numberSystemConverter();
+                    numberSystemConverter(sc);
                     break;
                 case "6":
-                    Function6_Median.median();
+                    ArithmeticOperations.median(sc);
                     break;
                 case "7":
-                    Function7_Average.average();
+                    ArithmeticOperations.average(sc);
                     break;
                 case "x":
                     System.out.println("Do widzenia, zapraszamy ponownie!");
@@ -65,7 +66,39 @@ public class Main {
                     System.out.println("Coś źle wprowadziłeś.\n");
             }
         }
+    }
 
-        // write your code here
+    static void multiply(Scanner sc) {
+
+        System.out.println("Podaj liczby, jakie chcesz pomnożyć. Rozdziel je spacjami.");
+
+        try {
+            double product = 1;
+            String input = sc.nextLine();
+            for (String s : input.split(" ")) {
+                product *= Double.valueOf(s);
+            }
+            System.out.println("Iloczyn podanych liczb to: " + product);
+
+        } catch (NumberFormatException NFE) {
+            System.out.println("Coś pomyliłeś. Wprowadzono niepoprawne dane!\n");
+        }
+    }
+
+    static void sumOfElements(Scanner sc) {
+
+        System.out.println("Podaj liczby, jakie chcesz zsumować. Rozdziel je spacjami.");
+
+        try {
+            double sum = 0;
+            String input = sc.nextLine();
+            for (String s : input.split(" ")) {
+                sum += Double.valueOf(s);
+            }
+            System.out.println("Suma podanych liczb to: " + sum);
+
+        } catch (NumberFormatException NFE) {
+            System.out.println("Wprowadziłeś niepoprawne dane.");
+        }
     }
 }
